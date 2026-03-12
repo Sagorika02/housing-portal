@@ -1,8 +1,23 @@
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
+
 export default function Loader() {
   return (
-    <div className="flex items-center gap-2 mt-4 text-blue-600">
-      <div className="w-4 h-4 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
-      <span>Predicting price...</span>
-    </div>
+    <Box
+      sx={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100vw",
+        height: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "rgba(0, 0, 0, 0.7)",
+        zIndex: 1300
+      }}
+    >
+      <CircularProgress color="primary" />
+    </Box>
   );
 }

@@ -1,0 +1,20 @@
+[
+  {
+    "square_footage": 1500,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "year_built": 2000,
+    "lot_size": 5000,
+    "distance_to_city_center": 5,
+    "school_rating": 8
+  },
+  {
+    "square_footage": 1200,
+    "bedrooms": 2,
+    "bathrooms": 1,
+    "year_built": 1995,
+    "lot_size": 4000,
+    "distance_to_city_center": 4,
+    "school_rating": 7
+  }
+]

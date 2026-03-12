@@ -2,6 +2,7 @@ version: "3.9"
 
 services:
 
+  # ML Model API (FastAPI)
   housing-price-api:
     build: ./housing-price-api
     container_name: housing-price-api
@@ -9,7 +10,9 @@ services:
       - "8000:8000"
     networks:
       - housing-network
+    restart: always
 
+  # Property Estimator API
   property-estimator-api:
     build: ./property-estimator-api
     container_name: property-estimator-api
@@ -19,7 +22,25 @@ services:
       - housing-price-api
     networks:
       - housing-network
+    restart: always
+    environment:
+      ML_API_URL: http://housing-price-api:8000
 
+  # Market Analysis API (Spring Boot)
+  market-analysis-api:
+    build: ./market-analysis-api
+    container_name: market-analysis-api
+    ports:
+      - "8082:8082"
+    depends_on:
+      - housing-price-api
+    networks:
+      - housing-network
+    restart: always
+    environment:
+      ML_API_URL: http://housing-price-api:8000
+
+  # Next.js Frontend
   property-portal:
     build: ./property-portal
     container_name: property-portal
@@ -27,8 +48,13 @@ services:
       - "3000:3000"
     depends_on:
       - property-estimator-api
+      - market-analysis-api
     networks:
       - housing-network
+    restart: always
+    environment:
+      NEXT_PUBLIC_ESTIMATOR_API: http://property-estimator-api:8001
+      NEXT_PUBLIC_MARKET_API: http://market-analysis-api:8082
 
 networks:
   housing-network:

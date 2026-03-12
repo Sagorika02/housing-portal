@@ -83,7 +83,6 @@ export default function EstimatorPage() {
 
   return (
     <div>
-
       <h2 className="text-2xl font-bold mb-6">
         Property Value Estimator
       </h2>
@@ -115,9 +114,6 @@ export default function EstimatorPage() {
         >
           Predict Price
         </button>
-
-        {loading && <Loader />}
-
       </div>
 
       {/* RESULTS */}
@@ -137,6 +133,9 @@ export default function EstimatorPage() {
                 <th className="p-2 border">Beds</th>
                 <th className="p-2 border">Baths</th>
                 <th className="p-2 border">Year</th>
+                <th className="p-2 border">Lot Size</th>
+                <th className="p-2 border">Distance to City Center</th>
+                <th className="p-2 border">School Rating</th>
                 <th className="p-2 border">Prediction</th>
               </tr>
             </thead>
@@ -148,6 +147,9 @@ export default function EstimatorPage() {
                   <td className="border p-2">{r.bedrooms}</td>
                   <td className="border p-2">{r.bathrooms}</td>
                   <td className="border p-2">{r.year_built}</td>
+                  <td className="border p-2">{r.lot_size}</td>
+                  <td className="border p-2">{r.distance_to_city_center}</td>
+                  <td className="border p-2">{r.school_rating}</td>
                   <td className="border p-2 font-semibold">
                     ${r.prediction.toFixed(2)}
                   </td>
@@ -163,6 +165,7 @@ export default function EstimatorPage() {
 
       )}
 
+      {loading && <Loader />}
     </div>
   );
 }

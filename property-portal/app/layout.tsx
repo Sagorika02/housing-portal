@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import "./globals.css";
 
 export default function RootLayout({
@@ -6,6 +9,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const pathname = usePathname();
+
   return (
     <html lang="en">
       <body className="bg-gray-50 text-gray-900 min-h-screen flex flex-col">
@@ -15,9 +20,10 @@ export default function RootLayout({
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
             <h1 className="font-bold text-lg sm:text-xl md:text-2xl">Housing ML Portal</h1>
 
-            <nav className="flex gap-4 sm:gap-6 text-blue-600 text-sm sm:text-base">
-              <Link href="/">Home</Link>
-              <Link href="/estimator">Estimator</Link>
+            <nav className="flex gap-4 sm:gap-6 text-sm sm:text-base">
+              <Link href="/" className={pathname === "/" ? "text-blue-800 font-semibold" : "text-blue-600"}>Home</Link>
+              <Link href="/estimator" className={pathname === "/estimator" ? "text-blue-800 font-semibold" : "text-blue-600"}>Estimator</Link>
+              <Link href="/market" className={pathname === "/market" ? "text-blue-800 font-semibold" : "text-blue-600"}>Market Analysis</Link>
             </nav>
           </div>
         </header>
